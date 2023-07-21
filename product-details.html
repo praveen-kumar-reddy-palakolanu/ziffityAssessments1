@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Details</title>
+  <link rel="stylesheet" type="text/css" href="product-details.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+</head>
+<body>
+  <h1 style="margin-bottom: 45rem; justify-content: center;">Product Details</h1>
+  
+  <div id="productDetails">
+    <h2 data-bind="text: productName"></h2>
+    <img data-bind="attr: { src: productImage }">
+    <p data-bind="text: productPrice"></p>
+    Quantity: <input type="number" min="1" step="1" data-bind="value: productQuantity">
+    <p data-bind="text: 'Total Price: $' + calculateTotalPrice().toFixed(2)"></p>
+    <button data-bind="click: addToCart">Add to Cart</button>
+  </div>
+  
+  <script>
+ function ProductDetailsViewModel() {
+  var self = this;
+
+  // var cartDetails = localStorage.get('cartItems');
+
+  // console.log(cartItems);
+  self.product = ko.observable();
+  var params = new URLSearchParams(window.location.search);
+  var encodedProductDetails = params.get("details");
+
+  var productDetails = JSON.parse(decodeURIComponent(encodedProductDetails));
+  self.product(productDetails);
+
+  self.productName = ko.observable(self.product().name);
+  self.productImage = ko.observable(self.product().image);
+  self.productPrice = ko.observable("Product Price: $" + self.product().price.toFixed(2));
+  self.productQuantity = ko.observable(1);
+
+  self.calculateTotalPrice = ko.computed(function () {
+    var total = self.product().price * self.productQuantity();
+    return total;
+  });
+
+  self.addToCart = function () {
+    var existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    console.log()
+    var existingProductIndex = existingCartItems.findIndex(function (item) {
+      return item.name === self.product().name;
+    });
+
+    if (existingProductIndex !== -1) {
+      existingCartItems[existingProductIndex].count += parseInt(self.productQuantity());
+    } else {
+      var newCartItem = {
+        name: self.product().name,
+        image: self.product().image,
+        price: self.product().price,
+        category: self.product().category,
+        count: self.productQuantity()
+      };
+      existingCartItems.push(newCartItem);
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+
+  };
+}
+
+
+ko.applyBindings(new ProductDetailsViewModel());
+
+  </script>
+ 
+</body>
+</html>
