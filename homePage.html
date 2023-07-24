@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Div Blocks</title>
+    <link rel="stylesheet" href="homePage.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .block {
+            width: 30%;
+            height: 100px;
+            background-color: green;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .block.clicked {
+            background-color: red;
+        }
+        .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"]
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="container" >
+        <h1>Enter the details</h1>
+        <form id="loginForm">
+            <label>Vehical Number</label><br>
+            <input type="text" id="vehicleNo" placeholder="Enter the vehicleNo" required >
+            <label>Contact Number</label><br>
+            <input type="text" id="phoneNumber" placeholder="Enter the Phonenumber" required>
+            <h3 id="timer"></h3>
+            <button id="showBlocks">Show Slots</button>
+        </form>
+    </div>
+
+    <div class="container" id="blocksContainer" style="display: none;">
+        <div class="row">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="row">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div>
+            <button onclick="window.location.href='loginpage.html'">LogOut</button>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+
+
+    <script>
+
+    const vehicleNoInput = document.getElementById("vehicleNo");
+    const phoneNumberInput = document.getElementById("phoneNumber");
+    const showBlocksButton = document.getElementById("showBlocks");
+
+    vehicleNoInput.addEventListener("input", validateInputs);
+    phoneNumberInput.addEventListener("input", validateInputs);
+
+    function validateInputs() 
+    {
+        if (vehicleNoInput.value.trim() !== "" && phoneNumberInput.value.trim() !== "") 
+        {
+            showBlocksButton.removeAttribute("disabled");
+        } 
+        else 
+        {
+            showBlocksButton.setAttribute("disabled", true);
+        }
+    }
+    document.getElementById("showBlocks").addEventListener("click", function(event) {
+    event.preventDefault(); 
+    document.getElementById("blocksContainer").style.display = "block";
+});
+</script>
+</body>
+</html>
