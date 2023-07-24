@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="adminPage.css">
+    <style>
+        
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+    var clickedBlocks = JSON.parse(localStorage.getItem('clickedBlocks'));
+    if (clickedBlocks && clickedBlocks.length > 0) {
+        var tableBody = $('#blocksTable tbody');
+        $.each(clickedBlocks, function(index, block) {
+            var userDetails = JSON.parse(block.userDetails);
+            var lastUserIndex = userDetails.length - 1; 
+            var lastUser = userDetails[lastUserIndex]; 
+
+            var row = $('<tr></tr>');
+            var userDetailsCell = $('<td></td>');
+            var userDetailText = 'Username: ' + lastUser.username + '<br>Password: ' + lastUser.password + '<br>';
+            userDetailsCell.append(userDetailText);
+
+            var currentDate = new Date();
+            var milliseconds = block.time;
+            var timeDifference = Math.round(((currentDate.getTime() - milliseconds) / 1000) / 60);
+            var amount = timeDifference * 1;
+
+            row.append(userDetailsCell);
+            row.append('<td>' + block.blockIndex + '</td>');
+            row.append('<td>' + block.phoneNumbers + '</td>');
+            row.append('<td>' + block.vehicleNos + '</td>');
+            row.append('<td>' + timeDifference + '</td>');
+            row.append('<td>'+'Rs. ' + amount + '</td>');
+
+            tableBody.append(row);
+        });
+    }
+});
+
+</script>
+</head>
+<body>
+    <h1>List of Utilization</h1>
+    <p>Here you can see the Details of User Details, Block Index, Phone Numbers, Time, Amount</p>
+    <table id="blocksTable">
+        <thead>
+            <tr>
+                <th>User Details</th>
+                <th>Block Index</th>
+                <th>Phone Numbers</th>
+                <th>Vehicle Numbers</th>
+                <th>Time</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <div>
+        <button id="adminPageLogoutbtn" onclick="window.location.href='loginpage.html'">LogOut</button>
+    </div>
+</body>
+</html>

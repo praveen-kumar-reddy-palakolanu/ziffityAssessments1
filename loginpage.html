@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="loginpage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $("#loginForm").submit(function(event) {
+        event.preventDefault(); 
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        var existingUsers = localStorage.getItem("users");
+        var usersArray = [];
+
+        if (existingUsers) {
+            usersArray = JSON.parse(existingUsers);
+        }
+
+        var isAuthenticated = false;
+
+        usersArray.forEach(function(user) {
+            if (user.username === username && user.password === password) {
+                isAuthenticated = true;
+                return false;
+            }
+        });
+
+        if (isAuthenticated) {
+            window.location.href = "adminPage.html";
+        } else {
+            usersArray.push({ username: username, password: password });
+            localStorage.setItem("users", JSON.stringify(usersArray));
+            window.location.href = "homePage.html";
+        }
+    });
+});
+</script>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter the Login Details</h1>
+        
+        <form id="loginForm">
+            <label >Username</label>
+            <input type="text" id="username" placeholder="Username" required>
+            
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Password" required>
+            <br>
+            <input type="submit" id="btn" value="Login">
+        </form>
+    </div>
+</body>
+</html>
