@@ -1,0 +1,47 @@
+body {
+    margin: 20px;
+}
+
+h1 {
+
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    height: 70px;
+    background-color:  yellowgreen;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+p {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width: 43rem;
+    margin-top: 20px;
+    font-size: 24px;
+    background-color: turquoise;
+    color: black;
+    padding: 10px;
+}
+
+a {
+    color: blue;
+}
+
