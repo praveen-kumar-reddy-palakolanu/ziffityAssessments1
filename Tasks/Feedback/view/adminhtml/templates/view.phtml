@@ -1,0 +1,19 @@
+<?php
+
+$collection = $block->getFeedback();
+
+if ($collection) {
+    ?>
+    <div class="container" >
+        <h2 class="name"><?= $collection->getData()['firstName'].' '.$collection->getData()['lastName'] ?></h2>
+        <div class="comment">
+            <h1 style="border:1px solid black; width=50px">
+                <?= $collection->getfeedback() ?>
+            </h1>
+        </div>
+        <a href=<?php echo $block->setAcceptUrl($collection->getemail()); ?>>Accept</a>
+        <a href=<?php echo $block->setRejectUrl($collection->getemail()); ?>>Reject</a>
+    </div>
+    <?php
+}
+?>

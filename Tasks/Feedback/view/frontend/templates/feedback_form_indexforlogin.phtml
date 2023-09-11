@@ -1,0 +1,22 @@
+<form method="post" action="<?php echo $this->getPostUrl() ?>">
+<div style="font-size:24px; width:550px">
+    <div>
+        <label for="first_name"><?= __("First Name") ?></label>
+        <input type="text" name="first_name" data-validate="{required:true}"/>
+    </div>
+    <div>
+        <label for="last_name"><?= __("Last Name") ?></label>
+        <input type="text" name="last_name" data-validate="{required:true}"/>
+    </div>
+    <div>
+        <label for="email"><?= __("Email") ?></label>
+        <input type="email" name="email" data-validate="{required:true, 'validate-email':true}"/>
+    </div>
+    <div >
+        <label for="feedback"><?= __("Comment Text Area") ?></label>
+        <input style="height:100px" type="text" name="feedback" data-validate="{required:true}"/>
+    </div>
+    <br>
+    <input style="height:50px" type="submit" value="<?= __("Submit feedback") ?>" />
+</div>
+</form>

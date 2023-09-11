@@ -1,0 +1,21 @@
+{
+    "feedback_form": {
+        "column": {
+            "id": true,
+            "firstName": true,
+            "lastName": true,
+            "email": true,
+            "feedback": true,
+            "status": true
+        },
+        "index": {
+            "FEEDBACK_FORM_FIRSTNAME": true,
+            "FEEDBACK_FORM_LASTNAME": true,
+            "FEEDBACK_FORM_EMAIL": true,
+            "FEEDBACK_FORM_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

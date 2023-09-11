@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+      <add id="MyCompany_GreetingsAdmin::greetings" 
+      title="Greetings" 
+      translate="title" 
+      module="MyCompany_GreetingsAdmin" 
+      parent="Magento_Backend::content" 
+      sortOrder="50" 
+      dependsOnModule="MyCompany_GreetingsAdmin" 
+      resource="MyCompany_GreetingsAdmin::greetings"/>
+
+      <add id="MyCompany_GreetingsAdmin::greetings_helloworld" 
+      title="Hello World"
+      translate="title" 
+      module="MyCompany_GreetingsAdmin" 
+      parent="MyCompany_GreetingsAdmin::greetings" 
+      sortOrder="10" 
+      dependsOnModule="MyCompany_GreetingsAdmin" 
+      action="greetingsadmin/helloworld" 
+      resource="MyCompany_GreetingsAdmin::greetings"/>
+    </menu>
+</config>
