@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <!-- GET List of Tracking Products -->
+    <route method="GET" url="/V1/magentoassessment/messagequeue/getlist">
+        <service class="MagentoAssessment\MessageQueue\Api\TrackingProductInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Save a Tracking Product -->
+    <route method="POST" url="/V1/magentoassessment/messagequeue/save">
+        <service class="MagentoAssessment\MessageQueue\Api\TrackingProductInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Get Tracking Product by ID -->
+    <route method="GET" url="/V1/magentoassessment/messagequeue/getid">
+        <service class="MagentoAssessment\MessageQueue\Api\TrackingProductInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Update a Tracking Product -->
+    <route method="POST" url="/V1/magentoassessment/messagequeue/edit">
+        <service class="MagentoAssessment\MessageQueue\Api\TrackingProductInterface" method="update"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Delete a Tracking Product -->
+    <route method="POST" url="/V1/magentoassessment/messagequeue/delete">
+        <service class="MagentoAssessment\MessageQueue\Api\TrackingProductInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+</routes>

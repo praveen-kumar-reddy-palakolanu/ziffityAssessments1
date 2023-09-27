@@ -1,5 +1,6 @@
 <?php
 namespace Tasks\Feedback\Model\Source;
+
 class Status implements \Magento\Framework\Option\ArrayInterface
 {
     public const REJECTED = 0;
@@ -9,20 +10,18 @@ class Status implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return $this->getOptionArray();
-
     }
     public function getOptionArray($excludeNew = false)
     {
         $options = [['value' => self::PROCESSING,'label' => __('Processing')],['value' => self::APPROVED,'label' => __('Approved')],['value' => self::REJECTED,'label' => __('Rejected')]];
         return $options;
     }
-    public function getStatusLabel($status){
+    public function getStatusLabel($status)
+    {
         $statusLabel = '';
         $options = $this->toOptionArray();
-        foreach ($options as $option)
-        {
-            if ($option['value'] == $status)
-            {
+        foreach ($options as $option) {
+            if ($option['value'] == $status) {
                 $statusLabel = $option['label'];
                 break;
             }

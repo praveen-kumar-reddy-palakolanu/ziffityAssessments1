@@ -20,10 +20,9 @@ class IndexforLogin extends Action
     public function execute()
     {
         $isloggedIn=$this->customerSession->isLoggedIn();
-        if($isloggedIn){
+        if ($isloggedIn) {
             $this->_redirect('feedback/feedback');
-        }
-        else{
+        } else {
             // User is not logged in, show login link and basic form
             $this->_view->loadLayout();
             $this->_view->renderLayout();

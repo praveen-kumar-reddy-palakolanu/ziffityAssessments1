@@ -3,7 +3,9 @@
 namespace Tasks\Feedback\Block;
 
 use Magento\Framework\View\Element\Template;
-// use CustomFeedback\FeedbackForm\Model\ResourceModel\Feedback\Controller;
+use Magento\Customer\Model\Session;
+
+use Tasks\Feedback\Model\ResourceModel\Feedback\Collection;
 
 
 class FeedbackForm extends Template
@@ -11,24 +13,21 @@ class FeedbackForm extends Template
 
     // private $collection;
     protected $_urlBuilder;
+    public $customerSession;
 
-    /**
-     * Display constructor.
-     * @param Template\Context $context
-     * @param Collection $collection
-     * @param array $data
-     */
+   
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        // Collection $collection,
         \Magento\Framework\UrlInterface $urlBuilder,
+        Session $customerSession,
         array $data = [],
-
     ) {
-        // $this->collection = $collection;
+
         parent::__construct($context, $data);
         $this->_urlBuilder = $urlBuilder;
+        $this->customerSession = $customerSession;
 
+      
 
     }
 
@@ -36,4 +35,34 @@ class FeedbackForm extends Template
     {
         return $this->getUrl('feedback/actions/save');
     }
+
+    public function getFirstName()
+    {
+        $customer = $this->customerSession->getCustomer();
+
+        var_dump($this->customerSession->isLoggedIn());
+
+        $customerFirstName = $customer->getFirstName();
+
+
+        return $customerFirstName;
+
+
+     }
+     public function getLastName()
+     {
+         $customerLastName = $this->customerSession->getCustomer()->getLastName();
+ 
+         return $customerLastName;
+ 
+ 
+      }
+      public function getEmail()
+      {
+          $customerEmail = $this->customerSession->getCustomer()->getEmail();
+  
+          return $customerEmail;
+  
+  
+       }
 }

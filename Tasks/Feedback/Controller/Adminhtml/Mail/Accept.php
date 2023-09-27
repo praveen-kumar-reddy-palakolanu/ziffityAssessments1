@@ -12,7 +12,6 @@ use Magento\Framework\App\Request\Http;
 use Tasks\Feedback\Model\Feedback;
 use Magento\Framework\Controller\Result\RedirectFactory;
 
-
 class Accept extends Action
 {
     /** @var PageFactory */
@@ -29,7 +28,6 @@ class Accept extends Action
         Mail $helperMail,
         Http $request,
         RedirectFactory $redirectFactory,
-
         Feedback $feedbackModel
     ) {
         $this->pageFactory = $rawFactory;
@@ -39,7 +37,6 @@ class Accept extends Action
         $this->redirectFactory = $redirectFactory;
 
         parent::__construct($context);
-
     }
 
     public function execute()
@@ -49,7 +46,7 @@ class Accept extends Action
 
         $resultPage = $this->pageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('Customer Feedback'));
-        $this->_helperMail->sendEmail($email,'email_accept_template');
+        $this->_helperMail->sendEmail($email, 'email_accept_template');
 
         $resultRedirect = $this->redirectFactory->create();
 
@@ -60,8 +57,5 @@ class Accept extends Action
         $this->messageManager->addSuccessMessage(__('Mail Accepted.'));
 
         return $resultRedirect;
-
-    
     }
 }
-

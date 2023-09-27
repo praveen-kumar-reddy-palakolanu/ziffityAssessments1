@@ -32,7 +32,6 @@ class Reject extends Action
         $this->feedbackModel = $feedbackModel;
         $this->redirectFactory = $redirectFactory;
         parent::__construct($context);
-
     }
 
     
@@ -43,7 +42,7 @@ class Reject extends Action
         $this->feedbackModel->markAsRejected($email);
         $resultPage = $this->pageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('Customer Feedback'));
-        $this->_helperMail->sendEmail($email,'email_reject_template');
+        $this->_helperMail->sendEmail($email, 'email_reject_template');
         $resultRedirect = $this->redirectFactory->create();
 
         // Set the redirection URL (e.g., redirect to the homepage)

@@ -9,7 +9,6 @@ use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Escaper;
 
-
 class Mail extends AbstractHelper
 {
     protected $transportBuilder;
@@ -23,8 +22,7 @@ class Mail extends AbstractHelper
         StoreManagerInterface $storeManager,
         Escaper $escaper,
         StateInterface $state
-    )
-    {
+    ) {
         $this->escaper = $escaper;
         $this->transportBuilder = $transportBuilder;
         $this->storeManager = $storeManager;
@@ -32,7 +30,7 @@ class Mail extends AbstractHelper
         parent::__construct($context);
     }
 
-    public function sendEmail($email,$templateId)
+    public function sendEmail($email, $templateId)
     {
         // this is an example and you can change template id,fromEmail,toEmail,etc as per your need.
         // template id

@@ -58,7 +58,8 @@ class FeedbackAction extends Column
                 $item[$this->getData('name')] = [
                     'View' => [
                         'href' => $this->urlBuilder->getUrl(
-                            'adminfeedback/action/view',['id' => $item['id'],  'email'=>$item['email'],'store' => $storeId]
+                            'adminfeedback/action/view',
+                            ['id' => $item['id'],  'email'=>$item['email'],'store' => $storeId]
                         ),
                         'label' => __('View')
                     ],

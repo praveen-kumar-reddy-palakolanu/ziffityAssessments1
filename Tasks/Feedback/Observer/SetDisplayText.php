@@ -1,13 +1,15 @@
 <?php
 
 namespace Tasks\Feedback\Observer;
+
 use Psr\Log\LoggerInterface;
 
-class SetDisplayText  implements \Magento\Framework\Event\ObserverInterface
+class SetDisplayText implements \Magento\Framework\Event\ObserverInterface
 {
     public $logger;
 
-    public function __construct(LoggerInterface $logger){
+    public function __construct(LoggerInterface $logger)
+    {
         $this->logger = $logger;
     }
 

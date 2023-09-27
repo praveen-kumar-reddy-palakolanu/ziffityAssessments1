@@ -19,7 +19,7 @@ class Save extends Action
      * @var FeedbackResourceModel
      */
     protected $feedbackResourceModel;
-    protected  $customerSession;
+    protected $customerSession;
     /**
      * Add constructor.
      * @param Context $context

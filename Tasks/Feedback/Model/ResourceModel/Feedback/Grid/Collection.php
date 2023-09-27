@@ -6,7 +6,8 @@ use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\Search\AggregationInterface;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
-class Collection extends AbstractCollection implements SearchResultInterface {
+class Collection extends AbstractCollection implements SearchResultInterface
+{
 
     /**
      * @var AggregationInterface
@@ -31,7 +32,18 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      */
     // $model = \Magento\Sales\Model\ResourceModel\Grid\Document::class,
     public function __construct(
-        \Magento\Framework\App\RequestInterface $request, \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory, \Psr\Log\LoggerInterface $logger, \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy, \Magento\Framework\Event\ManagerInterface $eventManager, $mainTable, $eventPrefix, $eventObject, $resourceModel, $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class, \Magento\Framework\DB\Adapter\AdapterInterface $connection = null, \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
+        \Magento\Framework\App\RequestInterface $request,
+        \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        $mainTable,
+        $eventPrefix,
+        $eventObject,
+        $resourceModel,
+        $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class,
+        \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
+        \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     ) {
         $this->request = $request;
         $this->_eventPrefix = $eventPrefix;
@@ -39,14 +51,20 @@ class Collection extends AbstractCollection implements SearchResultInterface {
         $this->_init($model, $resourceModel);
         $this->setMainTable($mainTable);
         parent::__construct(
-            $entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource
+            $entityFactory,
+            $logger,
+            $fetchStrategy,
+            $eventManager,
+            $connection,
+            $resource
         );
     }
 
     /**
      * @return AggregationInterface
      */
-    public function getAggregations() {
+    public function getAggregations()
+    {
         return $this->aggregations;
     }
 
@@ -54,7 +72,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      * @param AggregationInterface $aggregations
      * @return $this
      */
-    public function setAggregations($aggregations) {
+    public function setAggregations($aggregations)
+    {
         $this->aggregations = $aggregations;
         return $this;
     }
@@ -67,7 +86,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      * @param int $offset
      * @return array
      */
-    public function getAllIds($limit = null, $offset = null) {
+    public function getAllIds($limit = null, $offset = null)
+    {
         return $this->getConnection()->fetchCol($this->_getAllIdsSelect($limit, $offset), $this->_bindParams);
     }
 
@@ -76,7 +96,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      *
      * @return \Magento\Framework\Api\SearchCriteriaInterface|null
      */
-    public function getSearchCriteria() {
+    public function getSearchCriteria()
+    {
         return null;
     }
 
@@ -87,7 +108,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null) {
+    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null)
+    {
         return $this;
     }
 
@@ -96,7 +118,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      *
      * @return int
      */
-    public function getTotalCount() {
+    public function getTotalCount()
+    {
         return $this->getSize();
     }
 
@@ -107,7 +130,8 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setTotalCount($totalCount) {
+    public function setTotalCount($totalCount)
+    {
         return $this;
     }
 
@@ -118,24 +142,26 @@ class Collection extends AbstractCollection implements SearchResultInterface {
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setItems(array $items = null) {
+    public function setItems(array $items = null)
+    {
         return $this;
     }
 
-    protected function _initSelect() {
+    protected function _initSelect()
+    {
         parent::_initSelect();
 
         $search = $this->request->getParam('search');
         if (isset($search) && $search != '') {
 
             $this->addFieldToFilter(
-                array(
+                [
                     'main_table.name'
-                ), array(
-                    array('like' => '%' . $search . '%')
-                )
+                ],
+                [
+                    ['like' => '%' . $search . '%']
+                ]
             );
         }
     }
-
 }

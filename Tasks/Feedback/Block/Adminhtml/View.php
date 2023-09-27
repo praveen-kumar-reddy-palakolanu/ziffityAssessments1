@@ -7,7 +7,8 @@ use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Widget\Button\ButtonList;
 use Magento\Framework\UrlInterface;
 
-class View extends Template{
+class View extends Template
+{
 
     protected $_request;
     protected $_coreRegistry;

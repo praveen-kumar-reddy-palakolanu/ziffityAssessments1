@@ -14,7 +14,7 @@ class Feedback extends AbstractModel
     public function markAsAccepted($email)
     {
 
-        $feedback = $this->load($email,'email');
+        $feedback = $this->load($email, 'email');
 
         if ($feedback->getId()) {
             // Update the status to 'accepted'
@@ -26,7 +26,7 @@ class Feedback extends AbstractModel
     public function markAsRejected($email)
     {
 
-        $feedback = $this->load($email,'email');
+        $feedback = $this->load($email, 'email');
 
         if ($feedback->getId()) {
             // Update the status to 'accepted'
