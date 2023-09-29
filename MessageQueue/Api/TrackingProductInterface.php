@@ -10,7 +10,7 @@ interface TrackingProductInterface
      * @param int|null $pageId
      * @return \MagentoAssessment\MessageQueue\Api\DataInterface[]
      */
-    public function getApiData(int $pageId = null);
+    public function getApiData(int $start = null,int $end = null);
 
     /**
      * Save data

@@ -48,16 +48,25 @@ class TrackingProductRepository implements TrackingProductInterface // Corrected
      * @return \MagentoAssessment\MessageQueue\Api\DataInterface[]
      * 
      */
-    public function getApiData(int $pageId = null)
+    public function getApiData(int $start = null, int $end=null)
     {
-        if ($pageId == null) {
-            $pageId = 1;
+        if ($start == null) {
+            $start = 1;
+        }
+        if ($end == null) {
+            $end = 10;
         }
         $data = [];
 
         try {
-            $collection = $this->collectionFactory->create()->setPageSize(10)->setCurPage($pageId);
-
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter(
+                'id', 
+                [
+                    'from' => $start,
+                    'to' => $end,
+                ]
+            );
             foreach ($collection as $item) {
                 $model = $this->model->create();
                 $model->setId($item->getId());
